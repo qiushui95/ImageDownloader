@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion version_target_sdk
+    buildToolsVersion version_build_tools
+
+    defaultConfig {
+        minSdkVersion version_min_sdk
+        targetSdkVersion version_target_sdk
+
+        sourceSets {
+            main.java.srcDirs += 'src/main/kotlin'
+            test.java.srcDirs += 'src/test/kotlin'
+            androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+        debug {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    //引入对 DataBinding 的支持
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //module
+    api project(path: ':yannotation')
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
+
+    //support
+    implementation "androidx.appcompat:appcompat:$version_appcompat"
+
+    //test
+    testImplementation "junit:junit:$version_junit"
+    androidTestImplementation "androidx.test:runner:$version_test_runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$version_test_espresso"
+
+    //fragmentation
+    api "me.yokeyword:fragmentationx:$version_fragmentation"
+}

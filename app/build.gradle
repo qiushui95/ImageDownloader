@@ -7,14 +7,21 @@ apply plugin: "kotlin-kapt"
 apply plugin: "kotlin-android-extensions"
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    compileSdkVersion version_target_sdk
+    buildToolsVersion version_build_tools
+
     defaultConfig {
         applicationId "me.yangcx.downloader.image"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion version_min_sdk
+        targetSdkVersion version_target_sdk
         versionCode 1
         versionName "1.0"
+
+        sourceSets {
+            main.java.srcDirs += 'src/main/kotlin'
+            test.java.srcDirs += 'src/test/kotlin'
+            androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,21 +34,25 @@ android {
         enabled = true
     }
 
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
     //appcompat
-    implementation "androidx.appcompat:appcompat:1.0.2"
-    implementation "androidx.core:core-ktx:1.0.2"
+    implementation "androidx.appcompat:appcompat:$version_appcompat"
+    implementation "androidx.core:core-ktx:$version_androidx_core"
     //约束布局
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta1"
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint"
     //test
-    testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test:runner:1.2.0"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+    testImplementation "junit:junit:$version_junit"
+    androidTestImplementation "androidx.test:runner:$version_test_runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$version_test_espresso"
     //适配器
     implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-ktx:${version_bind_adapter}"
     implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:${version_bind_adapter}"

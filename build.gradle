@@ -2,19 +2,29 @@
 
 buildscript {
     ext {
-        version_bind_adapter = '3.1.0'
-        version_koin = '2.0.1'
-        version_kotlin="1.3.41"
-        version_lifecycle= '2.2.0-alpha03'
-        version_room="2.2.0-alpha02"
+        version_min_sdk = 21
+        version_target_sdk = 29
+        version_build_tools = "29.0.1"
+        version_bind_adapter = "3.1.0"
+        version_koin = "2.0.1"
+        version_kotlin = "1.3.41"
+        version_lifecycle = "2.2.0-alpha03"
+        version_room = "2.2.0-alpha02"
+        version_appcompat = "1.0.2"
+        version_androidx_core = "1.0.2"
+        version_constraint = "2.0.0-beta1"
+        version_junit = "4.12"
+        version_test_runner = "1.2.0"
+        version_test_espresso = "3.2.0"
+        version_fragmentation = "1.0.1"
     }
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-rc03'
+        classpath "com.android.tools.build:gradle:3.5.0-rc03"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -25,7 +35,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
