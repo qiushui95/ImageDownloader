@@ -1,8 +1,10 @@
 package me.yangcx.base.extends
 
 import android.view.View
+import me.yangcx.base.R
 
-private const val KEY_TAG_CLICK_TIME = 123546
+private val KEY_TAG_CLICK_TIME = R.id.idTagSingleClick
+@Suppress("UNUSED_PARAMETER")
 private var View.lastClickTime: Long
     set(value) = setTag(KEY_TAG_CLICK_TIME, System.currentTimeMillis())
     get() = getTag(KEY_TAG_CLICK_TIME)?.toString()?.toLongOrNull() ?: 0L

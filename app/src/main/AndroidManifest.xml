@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.yangcx.downloader.image">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".other.UsefulApplication"
         android:allowBackup="true"
@@ -14,9 +16,18 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.ImageSearchService"
+            android:exported="false" />
+        <service
+            android:name=".service.NotificationService"
+            android:exported="false" />
     </application>
 
 </manifest>

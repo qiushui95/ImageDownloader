@@ -1,2 +1,2 @@
 include ':app', ':ybase', ':yannotation'
-rootProject.name='Image Downloader'
+rootProject.name='ImageDownloader'

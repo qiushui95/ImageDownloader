@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Image Downloader</string>
+    <string name="app_name">搜图一下</string>
+    <string name="format_current_search">搜索关键字:%s</string>
+    <string name="format_current_page">正在搜索第%d页</string>
+    <string name="format_fetch_count">已爬取%d个</string>
+    <string name="format_save_count">已保存%d个</string>
+    <string name="format_record_page">第%d页</string>
+    <string name="format_record_fetch_count">爬取%d个</string>
+    <string name="format_record_save_count">保存%d个</string>
 </resources>

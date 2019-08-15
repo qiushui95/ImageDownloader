@@ -18,11 +18,21 @@ android {
         versionName "1.0"
 
         sourceSets {
-            main.java.srcDirs += 'src/main/kotlin'
-            test.java.srcDirs += 'src/test/kotlin'
-            androidTest.java.srcDirs += 'src/androidTest/kotlin'
+            main.java.srcDirs += "src/main/kotlin"
+            test.java.srcDirs += "src/test/kotlin"
+            debug.java.srcDirs = ["src/main/debug/kotlin"]
+            release.java.srcDirs = ["src/main/release/kotlin"]
+            androidTest.java.srcDirs += "src/androidTest/kotlin"
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //指定room.schemaLocation生成的文件路径
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -42,11 +52,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(":ybase")
     //kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$version_kotlin"
     //appcompat
     implementation "androidx.appcompat:appcompat:$version_appcompat"
     implementation "androidx.core:core-ktx:$version_androidx_core"
+    implementation "androidx.fragment:fragment:1.2.0-alpha02"
     //约束布局
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint"
     //test
@@ -67,6 +80,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-core-ktx:$version_lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-service:$version_lifecycle"
     //协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0-RC2"
     //RecyclerView
@@ -79,5 +93,39 @@ dependencies {
     implementation "androidx.room:room-runtime:$version_room"
     implementation "androidx.room:room-common:$version_room"
     implementation "androidx.room:room-ktx:$version_room"
-    implementation "androidx.room:room-coroutines:2.1.0-alpha04"
+    kapt "androidx.room:room-compiler:$version_room"
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+    //gson
+    implementation "com.google.code.gson:gson:2.8.5"
+    //stetho
+    debugImplementation "com.facebook.stetho:stetho:$version_stetho"
+    debugImplementation "com.facebook.stetho:stetho-okhttp3:$version_stetho"
+    //mmkv
+    implementation "com.tencent:mmkv:1.0.20"
+    //immersionBar
+    implementation "com.gyf.immersionbar:immersionbar:$version_immersion"
+    implementation "com.gyf.immersionbar:immersionbar-components:$version_immersion"
+    implementation "com.gyf.immersionbar:immersionbar-ktx:$version_immersion"
+    //glide
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+    implementation "jp.wasabeef:glide-transformations:4.0.1"
+    //leakCanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$version_leak"
+    //log
+    implementation "com.orhanobut:logger:2.2.0"
+    //bus
+    implementation "com.jeremyliao:live-event-bus-x:1.4.5"
+    //bottom navigation bar
+    implementation "com.ashokvarma.android:bottom-navigation-bar:2.1.0"
+    //viewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0-beta03"
+    //SearchBar
+    implementation "com.github.mancj:MaterialSearchBar:0.8.2"
+    //flexBox
+    implementation "com.google.android:flexbox:1.1.0"
+    //时间处理
+    implementation "joda-time:joda-time:2.10.3"
 }

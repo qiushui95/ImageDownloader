@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="me.yangcx.downloader.image.ui.search.SearchFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="me.yangcx.downloader.image.ui.main.MainViewModel" />
+
+        <variable
+            name="itemBinding"
+            type="me.tatarka.bindingcollectionadapter2.ItemBinding" />
+
+        <variable
+            name="diffConfig"
+            type="androidx.recyclerview.widget.DiffUtil.ItemCallback" />
+
+        <variable
+            name="viewHolderFactory"
+            type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter.ViewHolderFactory" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.mancj.materialsearchbar.MaterialSearchBar
+            android:id="@+id/msbSearch"
+            style="@style/MaterialSearchBarLight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility='@{(true==viewModel.searchInfo.isSearch)?"invisible":"visible"}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mt_hint="请输入搜索关键字"
+            app:mt_maxSuggestionsCount="0" />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility='@{(true==viewModel.searchInfo.isSearch)?"visible":"gone"}'
+            app:constraint_referenced_ids="btnCancel,tvSearch,tvFetchCount,tvPage,tvSaveCount" />
+
+        <com.noober.background.view.BLView
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:bl_ripple_color="#FFFFFFFF"
+            app:bl_ripple_enable="true"
+            app:bl_solid_color="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/msbSearch"
+            app:layout_constraintEnd_toEndOf="@id/msbSearch"
+            app:layout_constraintStart_toStartOf="@id/msbSearch"
+            app:layout_constraintTop_toTopOf="@id/msbSearch" />
+
+        <TextView
+            android:id="@+id/tvSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.format(@string/format_current_search,viewModel.searchInfo.search??"unknown")}'
+            android:textColor="#FF333333"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tvFetchCount"
+            app:layout_constraintEnd_toEndOf="@id/btnCancel"
+            app:layout_constraintStart_toStartOf="@id/btnCancel"
+            app:layout_constraintTop_toTopOf="@id/btnCancel"
+            tools:text="搜索关键字:flower" />
+
+        <TextView
+            android:id="@+id/tvFetchCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.format(@string/format_fetch_count,viewModel.fetchCount??0)}"
+            android:textColor="#FF666666"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnCancel"
+            app:layout_constraintEnd_toEndOf="@id/tvSearch"
+            app:layout_constraintStart_toStartOf="@id/tvSearch"
+            app:layout_constraintTop_toBottomOf="@id/tvSearch"
+            tools:text="已爬取100个" />
+
+        <TextView
+            android:id="@+id/tvPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.format(@string/format_current_page,viewModel.searchPage??1)}"
+            android:textColor="#FF666666"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvFetchCount"
+            app:layout_constraintEnd_toStartOf="@id/tvFetchCount"
+            app:layout_constraintStart_toStartOf="@id/btnCancel"
+            tools:text="正在爬取第1页" />
+
+        <TextView
+            android:id="@+id/tvSaveCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.format(@string/format_save_count,viewModel.saveCount??0)}"
+            android:textColor="#FF666666"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvFetchCount"
+            app:layout_constraintEnd_toEndOf="@id/btnCancel"
+            app:layout_constraintStart_toEndOf="@id/tvFetchCount"
+            tools:text="已保存10个" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecord"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:diffConfig="@{diffConfig}"
+            app:itemBinding="@{itemBinding}"
+            app:items="@{viewModel.searchRecord}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/msbSearch"
+            app:viewHolder="@{viewHolderFactory}"
+            tools:layoutManager="com.google.android.flexbox.FlexboxLayoutManager" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

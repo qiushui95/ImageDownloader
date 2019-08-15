@@ -4,9 +4,11 @@ import com.google.gson.Gson
 import org.koin.dsl.module
 
 object GsonModule {
-    val instance = module {
-        single {
-            Gson()
+    val instance by lazy {
+        module {
+            single {
+                Gson()
+            }
         }
     }
 }

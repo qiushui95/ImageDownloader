@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="me.yangcx.downloader.image.entity.SearchRecord" />
+    </data>
+
+    <com.noober.background.view.BLLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        app:bl_corners_radius="3dp"
+        app:bl_solid_color="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.timeText}"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            tools:text="2019-9-1 10:0:0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{String.format(@string/format_record_page,data.page)}"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            tools:text="第1页" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{String.format(@string/format_record_fetch_count,data.fetchCount)}"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            tools:text="爬取10个" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{String.format(@string/format_record_save_count,data.saveCount)}"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            tools:text="保存10个" />
+    </com.noober.background.view.BLLinearLayout>
+</layout>

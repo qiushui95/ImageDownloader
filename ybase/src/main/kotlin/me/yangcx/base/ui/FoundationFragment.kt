@@ -42,8 +42,16 @@ abstract class FoundationFragment : SupportFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =createContentView(inflater, container, savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = createContentView(inflater, container, savedInstanceState)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onViewCreated(view)
+    }
+
+    protected open fun onViewCreated(view: View) {
+
+    }
 
     /**
      * 重设输入法模式

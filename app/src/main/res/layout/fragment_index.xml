@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="me.yangcx.downloader.image.ui.index.IndexFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="me.yangcx.downloader.image.ui.main.MainViewModel" />
+
+        <variable
+            name="itemBinding"
+            type="me.tatarka.bindingcollectionadapter2.ItemBinding" />
+
+        <variable
+            name="diffConfig"
+            type="androidx.recyclerview.widget.DiffUtil.ItemCallback" />
+
+        <variable
+            name="adapter"
+            type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:adapter="@{adapter}"
+        app:diffConfig="@{diffConfig}"
+        app:itemBinding="@{itemBinding}"
+        app:items="@{viewModel.imageList}"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:spanCount="3" />
+</layout>
